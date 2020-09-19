@@ -8,11 +8,11 @@ phone = "phone_number" #Your Phone Number here
 session_file = 'session_name' #choose a unique session name
 
 text_file = open("lyrics.txt", "r")
-print(len(text_file.readlines()))
+lines = text_file.readlines()
+print(len(lines))
+text_file.close()
 
 with TelegramClient(session_file, api_id, api_hash,
                         sequential_updates=True) as client:
-    for line in text_file.readlines():
+    for line in lines:
         client.loop.run_until_complete(client.send_message('reciever_uname', line)) #replace 'reciever_id' with recievers username 
-
-text_file.close()
